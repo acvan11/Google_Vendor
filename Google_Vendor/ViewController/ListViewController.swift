@@ -37,15 +37,18 @@ class ListViewController: UIViewController {
 
 }
 }
-//extension ListViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
-//
-////    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-////        <#code#>
-////    }
-//}
+extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let item = viewModel.items[indexPath.row]
+        viewModel.item = item
+        goToDetail(with: viewModel)
+    }
+}
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

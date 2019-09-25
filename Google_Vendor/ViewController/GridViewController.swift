@@ -34,9 +34,13 @@ class GridViewController: UIViewController {
 }
 }
 
-//extension GridViewController: UICollectionViewDelegate {
-//
-//}
+extension GridViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = viewModel.items[indexPath.row]
+        viewModel.item = item
+        goToDetail(with: viewModel)
+    }
+}
 
 extension GridViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

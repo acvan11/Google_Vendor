@@ -13,6 +13,7 @@ import Foundation
 
 class ViewModel {
   
+    var item: Item!
     var items = [Item]() {
         didSet {
             let userInfo: [String:ViewModel] = ["ViewModel":self]
