@@ -24,7 +24,7 @@
                                     <segue destination="luK-Tz-gUg" kind="embed" id="kSW-zB-RoY"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V49-dO-Izj">
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V49-dO-Izj">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <connections>
                                     <segue destination="3Sd-ys-wi6" kind="embed" id="tQj-o3-3IB"/>
@@ -149,6 +149,7 @@
                             <constraint firstItem="2l7-4z-E4o" firstAttribute="top" secondItem="zh6-Bs-Zs2" secondAttribute="top" id="Vg0-VT-oKn"/>
                             <constraint firstItem="2l7-4z-E4o" firstAttribute="leading" secondItem="zh6-Bs-Zs2" secondAttribute="leading" id="hXq-Ug-qUP"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="lE1-bb-Zqg"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="2l7-4z-E4o" id="amc-ZJ-AyS"/>
@@ -168,7 +169,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ngy-dB-Fus">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d4M-2q-EKP">
                                     <size key="itemSize" width="414" height="377"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -234,6 +235,7 @@
                             <constraint firstItem="Ngy-dB-Fus" firstAttribute="top" secondItem="mie-Ha-qRX" secondAttribute="top" id="QsY-Kh-Keh"/>
                             <constraint firstAttribute="bottom" secondItem="Ngy-dB-Fus" secondAttribute="bottom" id="lbg-gq-It2"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Lu-Co-RNS"/>
                     </view>
                     <connections>
                         <outlet property="gridViewController" destination="Ngy-dB-Fus" id="aLU-bh-sQh"/>

@@ -12,6 +12,8 @@ class GridViewController: UIViewController {
 
     @IBOutlet weak var gridViewController: UICollectionView!
     
+    var viewModel: ViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,4 +21,20 @@ class GridViewController: UIViewController {
     
 
 
+}
+
+extension GridViewController: UICollectionViewDelegate {
+    
+}
+
+extension GridViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = gridViewController.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
+        return cell
+    }
+    
 }

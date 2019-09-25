@@ -13,12 +13,20 @@ class MainViewController: UIViewController {
     @IBOutlet weak var listViewController: UIView!
     @IBOutlet weak var gridViewController: UIView!
     
+    let viewModel = ViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       setupMain()
+    }
+    
+    private func setupMain() {
+        definesPresentationContext = true
     }
 
     @IBAction func switchButtonTapped(_ sender: UIBarButtonItem) {
+        listViewController.isHidden.toggle()
+        gridViewController.isHidden.toggle()
     }
     
 }
