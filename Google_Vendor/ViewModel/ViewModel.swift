@@ -8,17 +8,15 @@
 
 import Foundation
 
-protocol ItemDelegate: class {
-    func update()
-}
+
 
 
 class ViewModel {
-    weak var itemDelegate: ItemDelegate?
-    
+  
     var items = [Item]() {
         didSet {
-            itemDelegate?.update()
+            let userInfo: [String:ViewModel] = ["ViewModel":self]
+            NotificationCenter.default.post(name: Notification.Name.ItemNotification, object: nil, userInfo: userInfo)
         }
     }
     

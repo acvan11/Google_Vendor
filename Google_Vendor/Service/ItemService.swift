@@ -30,6 +30,7 @@ final class ItemService {
                     items.append(item)
                 }
             }
+            print("Successfully download data")
             completion(items)
         } catch {
             print("Couldn't Serialize JSON: \(error.localizedDescription)")

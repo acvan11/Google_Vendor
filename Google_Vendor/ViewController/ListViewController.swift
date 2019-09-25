@@ -12,47 +12,72 @@ class ListViewController: UIViewController {
 
     
     @IBOutlet weak var tableView: UITableView!
+    
+    
     var viewModel = ViewModel() {
         didSet {
             self.tableView.reloadData()
         }
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupList()
     }
     
     func setupList() {
-        viewModel.itemDelegate = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        NotificationCenter.default.addObserver(forName: Notification.Name.ItemNotification, object: nil, queue: .main) { note in
+            guard let userInfo = note.userInfo as? [String:ViewModel] else { return }
+            
+            self.viewModel = userInfo["ViewModel"]!
     }
     
 
 }
-
-extension ListViewController: UITableViewDelegate {
-    
 }
+//extension ListViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+//
+////    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+////        <#code#>
+////    }
+//}
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //TODO
+
+//        ItemService.shared.getItems { [weak self] num in
+//            number = num.count
+//
+//
+//        }
+//        print("number of row = \(number)")
+//        return number
+        
+        print("items count = \(viewModel.items.count)")
         return viewModel.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as! TableViewCell
-        let item = viewModel.items[indexPath.item]
+        print("indexPath.row = \(indexPath.row)")
+        let item = viewModel.items[indexPath.row]
+
         cell.item = item
         print(cell)
         return cell
     }
 }
 
-extension ListViewController: ItemDelegate {
-    func update() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
+//extension ListViewController: ItemDelegate {
+//    func update() {
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//    }
+//}

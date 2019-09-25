@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupMain() {
+        viewModel.get()
         definesPresentationContext = true
     }
 
