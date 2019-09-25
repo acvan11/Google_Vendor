@@ -16,4 +16,14 @@ class CollectionViewCell: UICollectionViewCell {
     
     static let identifier = "CollectionViewCell"
     
+    var item: Item! {
+        didSet {
+            numberLabel.text = String(item.id)
+            contextLabel.text = item.title
+            item.getBigImage { [weak self] img in
+                self?.itemImage.image = img
+            }
+        }
+    }
+    
 }

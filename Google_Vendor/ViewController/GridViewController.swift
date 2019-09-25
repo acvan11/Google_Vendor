@@ -12,28 +12,41 @@ class GridViewController: UIViewController {
 
     @IBOutlet weak var gridViewController: UICollectionView!
     
-    var viewModel: ViewModel!
+    var viewModel = ViewModel() {
+        didSet {
+            self.gridViewController.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupGrid()
     }
     
-
-
-}
-
-extension GridViewController: UICollectionViewDelegate {
+    func setupGrid(){
+    NotificationCenter.default.addObserver(forName: Notification.Name.ItemNotification, object: nil, queue: .main) { note in
+    guard let userInfo = note.userInfo as? [String:ViewModel] else { return }
     
+    self.viewModel = userInfo["ViewModel"]!
+    }
+
+
 }
+}
+
+//extension GridViewController: UICollectionViewDelegate {
+//
+//}
 
 extension GridViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return viewModel.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = gridViewController.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
+        let item = viewModel.items[indexPath.row]
+        cell.item = item
         return cell
     }
     
