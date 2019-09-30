@@ -12,7 +12,7 @@ import Foundation
 
 
 class ViewModel {
-  
+    
     var item: Item!
     var items = [Item]() {
         didSet {
@@ -27,6 +27,4 @@ class ViewModel {
             print("Item count: \(itemss.count)")
         }
     }
-    
-    
 }

@@ -9,18 +9,15 @@
 import UIKit
 
 class ListViewController: UIViewController {
-
     
     @IBOutlet weak var tableView: UITableView!
-    
     
     var viewModel = ViewModel() {
         didSet {
             self.tableView.reloadData()
         }
     }
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupList()
@@ -32,16 +29,14 @@ class ListViewController: UIViewController {
             guard let userInfo = note.userInfo as? [String:ViewModel] else { return }
             
             self.viewModel = userInfo["ViewModel"]!
+        }
     }
-    
-
-}
 }
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 150
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = viewModel.items[indexPath.row]
@@ -52,35 +47,17 @@ extension ListViewController: UITableViewDelegate {
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //TODO
-
-//        ItemService.shared.getItems { [weak self] num in
-//            number = num.count
-//
-//
-//        }
-//        print("number of row = \(number)")
-//        return number
-        
-        print("items count = \(viewModel.items.count)")
-        return viewModel.items.count
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as! TableViewCell
         print("indexPath.row = \(indexPath.row)")
         let item = viewModel.items[indexPath.row]
-
+        
         cell.item = item
         print(cell)
         return cell
     }
 }
 
-//extension ListViewController: ItemDelegate {
-//    func update() {
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
-//    }
-//}

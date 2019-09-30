@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
     @IBOutlet weak var listViewController: UIView!
     @IBOutlet weak var gridViewController: UIView!
     
@@ -17,14 +17,14 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       setupMain()
+        setupMain()
     }
     
     private func setupMain() {
         viewModel.get()
         definesPresentationContext = true
     }
-
+    
     @IBAction func switchButtonTapped(_ sender: UIBarButtonItem) {
         listViewController.isHidden.toggle()
         gridViewController.isHidden.toggle()

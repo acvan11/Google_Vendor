@@ -9,8 +9,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
-  
+    
+    
     @IBOutlet weak var imageDetail: UIImageView!
     
     var viewModel: ViewModel!
@@ -21,6 +21,4 @@ class DetailViewController: UIViewController {
             self?.imageDetail.image = img
         }
     }
-
-
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class GridViewController: UIViewController {
-
+    
     @IBOutlet weak var gridViewController: UICollectionView!
     
     var viewModel = ViewModel() {
@@ -24,14 +24,12 @@ class GridViewController: UIViewController {
     }
     
     func setupGrid(){
-    NotificationCenter.default.addObserver(forName: Notification.Name.ItemNotification, object: nil, queue: .main) { note in
-    guard let userInfo = note.userInfo as? [String:ViewModel] else { return }
-    
-    self.viewModel = userInfo["ViewModel"]!
+        NotificationCenter.default.addObserver(forName: Notification.Name.ItemNotification, object: nil, queue: .main) { note in
+            guard let userInfo = note.userInfo as? [String:ViewModel] else { return }
+            
+            self.viewModel = userInfo["ViewModel"]!
+        }
     }
-
-
-}
 }
 
 extension GridViewController: UICollectionViewDelegateFlowLayout {
@@ -44,7 +42,7 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
 
 extension GridViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.items.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
